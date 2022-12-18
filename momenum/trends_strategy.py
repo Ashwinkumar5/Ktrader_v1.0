@@ -52,7 +52,7 @@ class TREND_SCREENER(object):
         if(max_close > current_close and  min_close < narrow_bench_mark ):
             buy_stat_df.loc[index_cnt,'ConsolNarrowRange'] = 'Yes';
         
-        buy_stat_df.loc[index_cnt,'Current_Price'] = int(current_close);
+        
         
         
     
@@ -179,6 +179,79 @@ class TREND_SCREENER(object):
            
        df_trend=df_trend.iloc[0:0];
        
+       
+      
+#-------------------------------------------------------------------------------------------------
+
+    def obvUpTrendBreakout(self,symbol,stock_hist_db,MongoInstance,buy_stat_df,index_cnt):
+    
+        try:
+            breakout=[63,21];     
+            end_date = datetime.datetime.today();
+                    
+            index= 0;
+               
+            for period in breakout:
+              start_date = (datetime.datetime.today() - datetime.timedelta(days=period));
+                   
+              stock_df = MongoInstance.queryBetweenDates(stock_hist_db,symbol,start_date,end_date,period);
+              
+              df = stock_df[-period:-1];
+              
+
+              max_Obv = df['Obv'].max();
+              min_Obv = df['Obv'].min();
+              
+              current_obv = stock_df.iloc[-1]['Obv'];
+
+              
+              
+              if( current_obv >  max_Obv):
+                  buy_stat_df.loc[index_cnt,'ObvBreakout'] = str(period) ;
+                  print ('Symbol = > ',symbol,current_obv,'>',max_Obv,' Period => ', period);
+                  
+                  return;
+              elif (current_obv < min_Obv):
+                  buy_stat_df.loc[index_cnt,'ObvBreakDown'] = str('Yes') ;
+              
+                  
+                  
+        except Exception as exp:
+                print('Caught Exception in obvUpTrendBreakout',exp);
+
+#-------------------------------------------------------------------------------------------------
+
+    def isObvDepress(self,stock_hist_db,current_obv,start_period):    
+        
+        end_period = start_period + 2;
+       
+        for cnt in range (start_period,end_period):
+            if( not (current_obv < stock_hist_db.iloc[-cnt]['Obv'])):       
+               return False;
+    
+        return True;
+        
+
+    def obvDepressBreakout(self,symbol,stock_hist_db,buy_stat_df,index_cnt):
+    
+        try:
+       
+            current_obv = stock_hist_db.iloc[-1]['Obv'];
+            prev_day_ob = stock_hist_db.iloc[-2]['Obv'];
+       
+            if( self.isObvDepress(stock_hist_db,prev_day_ob,3) ):
+       
+                if(current_obv > prev_day_ob):       
+                    buy_stat_df.loc[index_cnt,'DepressObvBreakout'] = str('Yes') ;
+       
+        except Exception as exp:
+            print('Caught exception in obvDepressBreakout => ',exp)
+            
+    
+        
+    
+
+
       
 #------------------------------------------------------------------------------------------------------------------------------------------
 

@@ -11,38 +11,46 @@ import sys
 import os
 import math
 
+
 #---------------------------------------------------------------------
 class VOLUME_PROFILE(object):
     
     # constructor 
     def __init__(self):
         self.period_profilling = 14 + 1 
-        
+
     
-    def Bullish_volumeProfilling(self,data,symbol,buy_stat_df, index):
+    def Bullish_volumeProfilling(self,data,symbol,buy_stat_df, index,draw_instance):
           
            period = self.period_profilling;# this value can get tune
-        
-        
+
+           
            if( self.isVolumeConversionWithPrice(data,period) ):
-               #buy_stat_df.loc[index,'VPConvergence']= symbol + '  volume and price moving in convergent ';
-               buy_stat_df.loc[index,'VPConvergence']= 'Yes';
+                #buy_stat_df.loc[index,'VPConvergence']= symbol + '  volume and price moving in convergent ';
+                buy_stat_df.loc[index,'VPConvergence']= 'Yes';
              
            elif(self.isVolumeDiversionWithPrice(data,period)):
-               #buy_stat_df.loc[index,'VPDivergence'] = symbol + ' volume and price moving in divergent '; 
-               buy_stat_df.loc[index,'VPDivergence'] = 'Yes'
+                #buy_stat_df.loc[index,'VPDivergence'] = symbol + ' volume and price moving in divergent '; 
+                buy_stat_df.loc[index,'VPDivergence'] = 'Yes'
            else:
-               pass;
+                pass;
              
-           if(self.isSellingClimax(data, period)):
+           if(self.isSellingClimax_multiple_candle(data, period)):
                #buy_stat_df.loc[index,'SellingClimax'] = symbol + ' Selling climax';
                buy_stat_df.loc[index,'SellingClimax'] = 'Yes';
+           elif( self.sellling_Climax_with_singleBigCandle(data, period)):
+               buy_stat_df.loc[index,'SellingClimax'] = 'Yes';
+           else:
+                 pass;
               
-           resistance = self.isPickVolumeBreakout(data); 
-          
+           resistance = self.isPickVolumeBreakout(data);           
            if(resistance > 0 ):
-              buy_stat_df.loc[index,'PickVolumeBreakout'] ='Yes wait for breakout of resistance => ' + str(resistance) ;
-
+              buy_stat_df.loc[index,'PickVolumeBreakout'] ='Today wait for breakout of resistance => ' + str(resistance) ;
+           else:
+               resistance = self.isPickVolumeBreakoutinPeriod(data);
+               if(resistance > 0 ):
+                   buy_stat_df.loc[index,'PickVolumeBreakout'] ='Before wait for breakout of resistance => ' + str(resistance) ;
+              
 #---------------------------------------------------------------------
         
 
@@ -103,7 +111,7 @@ class VOLUME_PROFILE(object):
             return False
 #---------------------------------------------------------------------
 
-    def isSellingClimax(self, data, period):
+    def isSellingClimax_multiple_candle(self, data, period):
 
         #Capture current [ low ,high ,open ,close ]
         
@@ -135,6 +143,26 @@ class VOLUME_PROFILE(object):
             return False
         #msg=str("Stock is alert with Sellign climax indicator if selling climax confirm then buy on next candle close \n stop loss : low of selling climax candle");
 
+    def sellling_Climax_with_singleBigCandle(self,data, period):
+        
+        try:
+            period = 21 + 1;
+            Multiply_Factor = 5;
+            
+            sma_df_volume =  self.getSMAMovingAverage(data, period, 'Volume');
+            last_max_in_21_days_volume = sma_df_volume.iloc[-1]['Volume']
+                        
+            if( ( data.iloc[-1]['Close'] < data.iloc[-1]['Open'])  and
+                (last_max_in_21_days_volume * Multiply_Factor <= data.iloc[-1]['Volume']) ):
+                return True;
+            else:
+                return False;
+                        
+        except Exception as exp:
+            print('Caught Exception  sellling_Climax_with_singleBigCandle .. [ ',exp,']');
+            
+                
+
 #---------------------------------------------------------------------
     # if price is in uptrend
     # check the closing of PickVOlume candle Close as Ristance breakout everyday
@@ -158,15 +186,46 @@ class VOLUME_PROFILE(object):
             avg_vol = sum(list(df['Volume']))/len(df['Volume']);
             
             # current volume check is greater than 6 times average volume of last 10 days 
-            if(current_vol >= Multiply_Factor * avg_vol):
+            if( (data.iloc[-1]['Open'] < data.iloc[-1]['Close']) and
+                (current_vol >= Multiply_Factor * avg_vol) ):
                  return current_close;
             else:
                  return 0;
         else:
             return 0;
         
+#-----------------------------------------------------------------------------------------------------------------------
+        
+    def isPickVolumeBreakoutinPeriod(self, data):
+        try:
+            period = 42;        
+            Multiply_Factor = 6 ;        
+            
+            max_vol = data[-(period):-1]['Volume'].max();
+            
+            sma_vol_df = self.getSMAMovingAverage(data, period, 'Volume');
+            
+            sma_vol = sma_vol_df.iloc[-1]['Volume'];
+            
+            index =  data.Volume[data.Volume == max_vol].index;
+            
+            max_vol_open  = int(data.iloc[index]['Open']);
+            max_vol_close = int(data.iloc[index]['Close']);
+            
+            current_close  = data.iloc[-1]['Close'];
+            
+            if ( (max_vol_open < max_vol_close ) and
+                 (current_close < max_vol_close) and
+                 (max_vol >= sma_vol * Multiply_Factor) ):            
+                return max_vol_close;
+            else:
+                return 0;
+            
+        except Exception as exp:
+            print ('Caught exception [ ',exp, ' ]');
 
-#---------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+
 
     def isPriceMovingUp(self, data, period):
         
@@ -217,5 +276,3 @@ class VOLUME_PROFILE(object):
         df.dropna(inplace=True)
         return df
 #---------------------------------------------------------------------
-
-        # to do weighted moving average

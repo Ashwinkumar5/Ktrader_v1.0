@@ -9,7 +9,7 @@ import sys
 import datetime
 import pandas as pd;
 import pymongo;
-import numpy;
+import numpy as np;
 from nsepy import get_history;
 from tvDatafeed import TvDatafeed, Interval
 
@@ -160,7 +160,9 @@ def getsymbol_historical_data(symbol):
     global  symbol_hist_data_dict;    
 
     if symbol  in symbol_hist_data_dict.keys():
+       
         symbol_hst_df =symbol_hist_data_dict[symbol];
+        
         
         if '_id' in symbol_hst_df.columns:
             symbol_hst_df.drop('_id', axis=1, inplace=True);
@@ -263,9 +265,10 @@ def getBuysideCollectionName():
 
 def getbuy_side_stat_df():
     
-    dtypes = numpy.dtype(
+    dtypes = np.dtype(
             [
                 ("Symbol", str),
+                ("Volume", int),
                 ("Current_Price",int),
                 ("Engullfin", str),
                 ("Trustinline", str),
@@ -279,17 +282,21 @@ def getbuy_side_stat_df():
                 ("VPConvergence",str),
                 ("VPDivergence",str),
                 ("SellingClimax",str),
-                ("PickVolumeBreakout",str)
+                ("PickVolumeBreakout",str),
+                ("ObvBreakout",str),
+                ("ObvBreakDown",str),
+                ("DepressObvBreakout",str)
                 
             ]
         );
     
-    df = pd.DataFrame(numpy.empty(0, dtype=dtypes));
+    df = pd.DataFrame(np.empty(0, dtype=dtypes));
     df.set_index('Symbol');
     
      
     df['Symbol']                 = '';
     df['Current_Price']          = 00;
+    df['Volume']                 = 00;
     df['Engullfin']              = '';
     df['Trustinline']            = '';
     df['TweezerBottom']          = '';
@@ -303,6 +310,9 @@ def getbuy_side_stat_df():
     df['VPDivergence']           = '';
     df['SellingClimax']          = '';
     df['PickVolumeBreakout']     = '';
+    df['ObvBreakout']            = '';
+    df['ObvBreakDown']           = '';
+    df['DepressObvBreakout']     = '';
     
     return df;
     
@@ -396,43 +406,57 @@ def getscreendata(symbol,buy_stat_df,index):
      else:
          sector_index_df = getsectorIndex_historical_data_dict(sector_index);
 
-        # Rsi comparator of stock with broad index
-     getrelative_comparator().isStockOutPerformRelativeIndex(symbol_hst_df,
-                                                              nse_broad_index_df,
-                                                              symbol,
-                                                              broad_index,
-                                                              buy_stat_df,
-                                                              index
-                                                              );
+     #    # Rsi comparator of stock with broad index
+     # getrelative_comparator().isStockOutPerformRelativeIndex(symbol_hst_df,
+     #                                                          nse_broad_index_df,
+     #                                                          symbol,
+     #                                                          broad_index,
+     #                                                          buy_stat_df,
+     #                                                          index
+     #                                                          );
      
      
-     # # Rsi comparator of stock with sector index
+     # # # Rsi comparator of stock with sector index
      
-     # trends_strategy.RELATIVE_COMPARATOR().isStockOutPerformRelativeIndex(symbol_hst_df,
-     #                                                                        sector_index_df,
-     #                                                                        symbol,
-     #                                                                        sector_index,
-     #                                                                        relative_index_comparator_stats);
+     # # trends_strategy.RELATIVE_COMPARATOR().isStockOutPerformRelativeIndex(symbol_hst_df,
+     # #                                                                        sector_index_df,
+     # #                                                                        symbol,
+     # #                                                                        sector_index,
+     # #                                                                        relative_index_comparator_stats);
      
-     #------------------------------------------------------------------------------------------------------------
+     # #------------------------------------------------------------------------------------------------------------
      
      
-     # #   Check for breakout 
+      # #   Check for breakout of stocks
      
      getbreakout_indicator().uptrendscreenBreakout(symbol, 
-                                                    getReferenceData_Equity().get_NSE_STOCK_HIST_DATA_DB(),
-                                                    getMongoInstance(),
-                                                    buy_stat_df,
-                                                    index)
+                                                     getReferenceData_Equity().get_NSE_STOCK_HIST_DATA_DB(),
+                                                     getMongoInstance(),
+                                                     buy_stat_df,
+                                                     index)
      
      
-     #check narrow range consolidation
+      #check narrow range consolidation
      getbreakout_indicator().isNarrowRageConsolidation(symbol_hst_df, buy_stat_df, index);
      
-     #check narrow range breakout 
+      #check narrow range breakout 
      getbreakout_indicator().isNarrowRageBreakout(symbol_hst_df, buy_stat_df, index);
      
      
+      #check for Obv breakout
+     
+     
+     getbreakout_indicator().obvUpTrendBreakout(symbol,
+                                                 getReferenceData_Equity().get_NSE_STOCK_HIST_DATA_DB(), 
+                                                 getMongoInstance(), 
+                                                 buy_stat_df, 
+                                                 index);
+     
+     
+     getbreakout_indicator().obvDepressBreakout(symbol,
+                                                symbol_hst_df, 
+                                                buy_stat_df, 
+                                                index);
      # return breakout_comment;
     except Exception as exp:
         print('Caught exception at getscreendata [ ',exp, ' ]');
@@ -449,9 +473,13 @@ def volumeProfile( symbol, buy_stat_df, index ):
         
         #for symbol in getsymbol_list():
         symbol_df = getsymbol_historical_data(symbol);
-        volume_profile_instance.Bullish_volumeProfilling(symbol_df, symbol, buy_stat_df, index);
+        volume_profile_instance.Bullish_volumeProfilling(symbol_df, symbol, buy_stat_df, index,getchartDrawInstance());
+        
+        
             
         # once whole symbolist traverse print the volume analysis
+        buy_stat_df.loc[index,'Current_Price'] = int(symbol_df.iloc[-1]['Close']);
+        buy_stat_df.loc[index,'Volume'] = int(symbol_df.iloc[-1]['Volume']);
       
     except Exception as exp:
             print( 'Exception caught ==> ',exp);
@@ -494,14 +522,12 @@ def downloadReferenceData():
 def init():
     try:
         schema_dict = {'symbol': 'Symbol', 'open': 'Open','close':'Close','high':'High','low':'Low','volume':'Volume','date':'Date'};
-        symbol_df = downloadReferenceData();
-        
-        getReferenceData_Equity().load_symbol_list();
-        setsymbol_list(getReferenceData_Equity().get_nse_listed_stock_list());
         
         #upload symbols to mongo DB 
         instance= getMongoInstance();
         instance.connect();
+        
+        symbol_df = downloadReferenceData();
         
         try:
             instance.dropDB(getReferenceData_Equity().get_NSE_Symbol_DB())
@@ -512,6 +538,7 @@ def init():
         except Exception as exp:
             pass;
         
+       
         #Create Buy Side Stock Analysis 
         getMongoInstance().createDB(getReferenceData_Equity().Daily_BUY_SIDE_ANALYSIS_DB);
         
@@ -520,8 +547,12 @@ def init():
         instance.createCollection(getReferenceData_Equity().get_NSE_Symbol_DB(),
                                   getReferenceData_Equity().get_NSE_Symbol_Collection(),
                                   symbol_df);
+        
+        getReferenceData_Equity().load_symbol_list();
+        
+        setsymbol_list(getReferenceData_Equity().get_nse_listed_stock_list());
 
-
+        
        
         #upload stock historial Data ,        
         symbol_list = getsymbol_list();
@@ -538,7 +569,9 @@ def init():
             
             if 'close' in history_data.columns:
                 history_data.rename(schema_dict, axis=1, inplace=True);
-        
+
+            history_data['Obv'] = (np.sign(history_data['Close'].diff()) * history_data['Volume']).fillna(0).cumsum()
+                                    
             instance.createCollection(getReferenceData_Equity().get_NSE_STOCK_HIST_DATA_DB(), 
                                       symbol, history_data);
 
@@ -674,7 +707,7 @@ def stock_screener(index,buy_stat_df):
         buy_stat_df.loc[index,'Symbol']=symbol;
         
         print ('swing start')
-        SwingStrategy(symbol,buy_stat_df,index);
+        SwingStrategy(symbol,buy_stat_df,index);        
         print ('swing end  ')
         print('start screendata')
         getscreendata(symbol,buy_stat_df,index);
@@ -682,12 +715,10 @@ def stock_screener(index,buy_stat_df):
         print('start volume profile ')
         volumeProfile(symbol,buy_stat_df,index);
         print('end volume profile ')
+        
         index = index + 1;
         
     return index ;
-
-
-    
 
 def Main():
     instance= getMongoInstance();
@@ -696,21 +727,24 @@ def Main():
     
  
     print (' start :: ',sys._getframe().f_code.co_name);
+    
     # reference data uploaded to mongo db
     #init();    
     
-    daily_update();
+    #daily_update();
 
     buy_stat_df = getbuy_side_stat_df();
     load_reference_data();
+    
     
     stock_screener(index,buy_stat_df);
     
     getMongoInstance().createCollection(getReferenceData_Equity().Daily_BUY_SIDE_ANALYSIS_DB, getBuysideCollectionName(), buy_stat_df);
     stat_patth = getchart_directory_path();
+    
     buy_stat_df.to_csv(stat_patth + '\\' + getBuysideCollectionName() + '.csv' );
     
-    sendEmail();
+    #sendEmail();
     
     instance.disconnect();
     

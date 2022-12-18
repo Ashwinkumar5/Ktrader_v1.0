@@ -22,6 +22,7 @@ OPEN='Open';
 CLOSE='Close';
 HIGH='High';
 LOW='Low';
+VOLUME='Volume';
 GAP_UP_PERCNT=7;
 Engulfin="ENGULFIN";
 TrustinLine="TRUSTINLINE";
@@ -51,7 +52,32 @@ class SWING_STRATEGIES(object):
         self.Symbol = ''
         self.data = pd.DataFrame();
 #-------------------------------------------------------------------------------------------------------------
-  
+    def isHammer(self,data):
+
+        spread     =  data[CLOSE] -data[OPEN]; 
+        lower_weak =  data[OPEN] - data[LOW];
+        high_weak  =  data[HIGH] - data[CLOSE];
+
+        if(high_weak > 0 ):
+            return False;
+        else:
+            if(spread * 2 <= lower_weak  ):
+                return True;
+            else:
+                return False;
+            
+#------------------------------------------------------------------------------------------------------------
+
+    def isShootingStar(self,data):
+        spread = data[CLOSE] -data[OPEN]; 
+        lower_weak =  data[OPEN] - data[LOW];
+        high_weak  =  data[HIGH] - data[CLOSE];
+        
+        if( high_weak >= spread * 2 ):
+            return True;
+        else:
+            return False;
+
 #-------------------------------------------------------------------------------------------------------------    
     def isGreen(self,data):
         if(data[OPEN] > data[CLOSE]):
@@ -76,17 +102,20 @@ class SWING_STRATEGIES(object):
         
 #-------------------------------------------------------------------------------------------------------------        
     def isDownSwing(self,data,Symbol):                       
-        low=data.iloc[-PREV_DAY][CLOSE];       
+        low_close=data.iloc[-PREV_DAY][CLOSE];       
+        
        
         for days in range(SWING_START_POINT,SWING_END_POINT):
-                if( (low <= data.iloc[-days] [CLOSE] ) and not (self.isGreen(data.iloc[-days])) ):                    
-                    low = data.iloc[-days] [CLOSE];
+                if( (low_close <= data.iloc[-days] [CLOSE] ) and not (self.isGreen(data.iloc[-days])) ):                    
+                    low_close = data.iloc[-days][CLOSE];
+                    
                     continue;
                 else:
                     return False;        
         #for days in range(PREV_DAY,SWING_END_POINT):               
          #  print(Symbol," :: ",data.iloc[-days]['Date']," :: ",data.iloc[-days] ['Close']);        
         return True;
+
 #-------------------------------------------------------------------------------------------------------------    
     def isUpSwing(self,data,Symbol):                       
         high=data.iloc[-PREV_DAY]['Close'];        
@@ -140,10 +169,14 @@ class SWING_STRATEGIES(object):
     def bullishEngulfin(self,stock_hst_df,symbol,buy_stat_df,index):              
         stop_loss ='';
         
-        if( self.isGreen(stock_hst_df.iloc[-CURR_DAY]) ):
+        if( self.isGreen(stock_hst_df.iloc[-CURR_DAY]) and ( not self.isShootingStar(stock_hst_df.iloc[-CURR_DAY]))):
             if( ( stock_hst_df.iloc[-CURR_DAY][CLOSE] >  stock_hst_df.iloc[-PREV_DAY][OPEN] ) and ( stock_hst_df.iloc[-CURR_DAY][OPEN] <  stock_hst_df.iloc[-PREV_DAY][CLOSE] ) ):
                 pattern = 'Bullish bullishEngulfin pattern ... \n Entry on current Close and exit on next 5th candle close \n';
                 stop_loss='stop_loss only on days close = ' + str(self.getDecimalFloatToString(stock_hst_df.iloc[-CURR_DAY][OPEN],2));
+                
+                if(self.isHammer ( stock_hst_df.iloc[-CURR_DAY] )):
+                    stop_loss = stop_loss + "\n --- HAMMER Candle ---";
+                
                 self.grah.drawCandleChart(stock_hst_df.tail(MAX_PREV_DAYS),symbol,Engulfin, pattern + stop_loss );
                 buy_stat_df.loc[index,'Engullfin'] =  str(pattern + stop_loss);
                
@@ -152,12 +185,16 @@ class SWING_STRATEGIES(object):
     
     def bullishTrutingLine(self,stock_hst_df,symbol,buy_stat_df,index):
         stop_loss ='';
-        if( (self.isGreen(stock_hst_df.iloc[-CURR_DAY])) 
-                   and (self.isOpenGapUp(stock_hst_df.iloc[-CURR_DAY],stock_hst_df.iloc[-PREV_DAY])) 
-                   and ( stock_hst_df.iloc[-CURR_DAY][CLOSE] >  stock_hst_df.iloc[-PREV_DAY][OPEN]) ):
+        if( (self.isGreen(stock_hst_df.iloc[-CURR_DAY]) ) 
+            and ( not self.isShootingStar(stock_hst_df.iloc[-CURR_DAY]) )
+            and (self.isOpenGapUp(stock_hst_df.iloc[-CURR_DAY],stock_hst_df.iloc[-PREV_DAY])) 
+            and ( stock_hst_df.iloc[-CURR_DAY][CLOSE] >  stock_hst_df.iloc[-PREV_DAY][OPEN]) ):
             
             pattern = 'Bullish TrustingLine pattern ... \n Entry on current Close and exit on next 5th candle close \n';            
             stop_loss='stop_loss only on days close = ' + str(self.getDecimalFloatToString(stock_hst_df.iloc[-PREV_DAY][CLOSE],2));
+            
+            if(self.isHammer ( stock_hst_df.iloc[-CURR_DAY] )):
+                stop_loss = stop_loss + "\n --- HAMMER Candle ---";
             
             self.grah.drawCandleChart(stock_hst_df.tail(MAX_PREV_DAYS),symbol,TrustinLine,pattern + stop_loss );
             
@@ -171,35 +208,51 @@ class SWING_STRATEGIES(object):
         
         delta=0;
         
-        if( ( stock_hst_df.iloc[-CURR_DAY][LOW] == stock_hst_df.iloc[-PREV_DAY][LOW] ) ): 
-            print (symbol,' : current low ',stock_hst_df.iloc[-CURR_DAY][LOW]," : prev low ",stock_hst_df.iloc[-PREV_DAY][LOW]," :: Bullish tweezer Bottom pattern ...");                                         
-            stop_loss = stop_loss + self.getDecimalFloatToString(stock_hst_df.iloc[-PREV_DAY][LOW],2);
-            self.grah.drawCandleChart(stock_hst_df.tail(MAX_PREV_DAYS),symbol,TWEEZER_BOTTOM,pattern + stop_loss);
-            buy_stat_df.loc[index,'TweezerBottom'] =  str(pattern + stop_loss);
-        else:
+        if(not self.isShootingStar(stock_hst_df.iloc[-CURR_DAY]) ):
             
-            if( stock_hst_df.iloc[-CURR_DAY][LOW] < 100 and (stock_hst_df.iloc[-CURR_DAY][LOW] > 50) ):
-                 delta = float(TWEZZER_BOTTOM_DELTA_DCT[1]);
-            elif( stock_hst_df.iloc[-CURR_DAY][LOW] < 1000 and (stock_hst_df.iloc[-CURR_DAY][LOW] > 100) ):
-                delta = float(TWEZZER_BOTTOM_DELTA_DCT[2]);
-            elif( (stock_hst_df.iloc[-CURR_DAY][LOW] < 5000) and ( stock_hst_df.iloc[-CURR_DAY][LOW] > 1000 ) ):
-                delta = float(TWEZZER_BOTTOM_DELTA_DCT[3]);
-            elif( (stock_hst_df.iloc[-CURR_DAY][LOW] < 10000) and ( stock_hst_df.iloc[-CURR_DAY][LOW] > 5000 ) ):
-                delta = float(TWEZZER_BOTTOM_DELTA_DCT[4]);
-            else:
-                delta=0;
+            if( ( stock_hst_df.iloc[-CURR_DAY][LOW] == stock_hst_df.iloc[-PREV_DAY][LOW] ) ): 
+                print (symbol,' : current low ',stock_hst_df.iloc[-CURR_DAY][LOW]," : prev low ",stock_hst_df.iloc[-PREV_DAY][LOW]," :: Bullish tweezer Bottom pattern ...");                                         
+                stop_loss = stop_loss + self.getDecimalFloatToString(stock_hst_df.iloc[-PREV_DAY][LOW],2);
+                
+                if(self.isHammer ( stock_hst_df.iloc[-CURR_DAY] )):
+                    stop_loss = stop_loss + "\n --- HAMMER Candle ---";
                     
-            if(stock_hst_df.iloc[-CURR_DAY][LOW] > stock_hst_df.iloc[-PREV_DAY][LOW]):
-                if( (stock_hst_df.iloc[-CURR_DAY][LOW] - stock_hst_df.iloc[-PREV_DAY][LOW]) <= delta):                    
-                    print (symbol,' : current low ',stock_hst_df.iloc[-CURR_DAY][LOW]," : prev low ",stock_hst_df.iloc[-PREV_DAY][LOW],": Delta ",delta, ":: Bullish tweezer Bottom pattern ...");                                                 
-                    stop_loss = stop_loss +  self.getDecimalFloatToString(stock_hst_df.iloc[-PREV_DAY][LOW],2);
-                    self.grah.drawCandleChart(stock_hst_df.tail(MAX_PREV_DAYS),symbol,TWEEZER_BOTTOM,pattern + stop_loss );
-                    buy_stat_df.loc[index,'TweezerBottom'] =  pattern + stop_loss;                           
+                self.grah.drawCandleChart(stock_hst_df.tail(MAX_PREV_DAYS),symbol,TWEEZER_BOTTOM,pattern + stop_loss);
+                buy_stat_df.loc[index,'TweezerBottom'] =  str(pattern + stop_loss);
             else:
-                 if( (stock_hst_df.iloc[-PREV_DAY][LOW] - stock_hst_df.iloc[-CURR_DAY][LOW]) <= delta):
-                    print (symbol,' : current low ',stock_hst_df.iloc[-CURR_DAY][LOW]," : prev low ",stock_hst_df.iloc[-PREV_DAY][LOW],": Delta ",delta," :: Bullish tweezer Bottom pattern ...");                             
-                    stop_loss = stop_loss + self.getDecimalFloatToString(stock_hst_df.iloc[-PREV_DAY][LOW],2);
-                    self.grah.drawCandleChart(stock_hst_df.tail(MAX_PREV_DAYS),symbol,TWEEZER_BOTTOM,pattern + stop_loss); 
-                    buy_stat_df.loc[index,'TweezerBottom'] =  str(pattern + stop_loss);                           
+                
+                if( stock_hst_df.iloc[-CURR_DAY][LOW] < 100 and (stock_hst_df.iloc[-CURR_DAY][LOW] > 50) ):
+                     delta = float(TWEZZER_BOTTOM_DELTA_DCT[1]);
+                elif( stock_hst_df.iloc[-CURR_DAY][LOW] < 1000 and (stock_hst_df.iloc[-CURR_DAY][LOW] > 100) ):
+                    delta = float(TWEZZER_BOTTOM_DELTA_DCT[2]);
+                elif( (stock_hst_df.iloc[-CURR_DAY][LOW] < 5000) and ( stock_hst_df.iloc[-CURR_DAY][LOW] > 1000 ) ):
+                    delta = float(TWEZZER_BOTTOM_DELTA_DCT[3]);
+                elif( (stock_hst_df.iloc[-CURR_DAY][LOW] < 10000) and ( stock_hst_df.iloc[-CURR_DAY][LOW] > 5000 ) ):
+                    delta = float(TWEZZER_BOTTOM_DELTA_DCT[4]);
+                else:
+                    delta=0;
+                        
+                if(stock_hst_df.iloc[-CURR_DAY][LOW] > stock_hst_df.iloc[-PREV_DAY][LOW]):
+                    if( (stock_hst_df.iloc[-CURR_DAY][LOW] - stock_hst_df.iloc[-PREV_DAY][LOW]) <= delta):                    
+                        print (symbol,' : current low ',stock_hst_df.iloc[-CURR_DAY][LOW]," : prev low ",stock_hst_df.iloc[-PREV_DAY][LOW],": Delta ",delta, ":: Bullish tweezer Bottom pattern ...");                                                 
+                        stop_loss = stop_loss +  self.getDecimalFloatToString(stock_hst_df.iloc[-PREV_DAY][LOW],2);
+                        
+                        if(self.isHammer ( stock_hst_df.iloc[-CURR_DAY] )):
+                            stop_loss = stop_loss + "\n --- HAMMER Candle ---";
+                            
+                        self.grah.drawCandleChart(stock_hst_df.tail(MAX_PREV_DAYS),symbol,TWEEZER_BOTTOM,pattern + stop_loss );
+                        buy_stat_df.loc[index,'TweezerBottom'] =  pattern + stop_loss;                           
+                else:
+                     if( (stock_hst_df.iloc[-PREV_DAY][LOW] - stock_hst_df.iloc[-CURR_DAY][LOW]) <= delta):
+                        print (symbol,' : current low ',stock_hst_df.iloc[-CURR_DAY][LOW]," : prev low ",stock_hst_df.iloc[-PREV_DAY][LOW],": Delta ",delta," :: Bullish tweezer Bottom pattern ...");                             
+                        stop_loss = stop_loss + self.getDecimalFloatToString(stock_hst_df.iloc[-PREV_DAY][LOW],2);
+                        
+                        if(self.isHammer ( stock_hst_df.iloc[-CURR_DAY] )):
+                            stop_loss = stop_loss + "\n --- HAMMER Candle ---";
+                            
+                        self.grah.drawCandleChart(stock_hst_df.tail(MAX_PREV_DAYS),symbol,TWEEZER_BOTTOM,pattern + stop_loss); 
+                        buy_stat_df.loc[index,'TweezerBottom'] =  str(pattern + stop_loss);                       
+        else:
+            pass;
             
 #-------------------------------------------------------------------------------------------------------------
