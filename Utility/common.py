@@ -9,6 +9,7 @@ import os;
 import KTrader_Exception;
 import datetime;
 import shutil;
+import pandas as pd
 chart_dir = "E:\\Pyhton\\KTrader\\charts";
 zipfile='';
 
@@ -85,3 +86,30 @@ def zip(path,folder):
 
 def getZip():
     return getChartDirPath() +"\\" + getCurrectDateString() + '.zip';
+
+
+
+
+#------------------------------------------------------------------------------
+def getSMA(data,period,column):
+    
+    df = pd.DataFrame().reset_index();
+    df.columns= [column];
+    
+    df[column] = data[column].rolling(period).mean();        
+    
+    df.dropna(inplace=True)
+    
+    return df;
+
+#------------------------------------------------------------------------------
+def getDMA(data,period,column):
+    
+    df = pd.DataFrame().reset_index();
+    df.columns= [column];
+    
+    df[column] = data[column].ewm(span=period).mean();
+    
+    df.dropna(inplace=True)
+
+    return df;

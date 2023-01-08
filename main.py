@@ -8,11 +8,13 @@ import os
 import sys
 import datetime
 import pandas as pd;
+import pandas_ta as pd_ta;
+import talib as ta;
+
 import pymongo;
 import numpy as np;
 from nsepy import get_history;
 from tvDatafeed import TvDatafeed, Interval
-
 
 sys.path.append("Utility");
 sys.path.append("Downloader");
@@ -22,6 +24,7 @@ sys.path.append("DB");
 sys.path.append("momenum");
 sys.path.append("Volume");
 sys.path.append("Graph");
+sys.path.append("Screener");
 
 import refDataDownloader;
 import Bullish as swingBullish;
@@ -32,7 +35,7 @@ import Mongo;
 import trends_strategy;
 import volumeIndicator;
 import chartDrawing ;
-import common;
+import screener;
 
 #-------------------------------------------------------------------------------------
 
@@ -46,6 +49,11 @@ volume_profile_instance = None;
 relative_comparator = None
 breakout_indicator = None
 chart_draw_instance = None;
+Keltner_Channel     = None;
+chande_osccilator   = None;
+Parabolic_SAR       = None;
+Adx                 = None;
+screener_trend      = None;
 
 #-------------------------------------------------------------------------------------
 
@@ -126,6 +134,47 @@ def getbreakout_indicator():
         breakout_indicator = trends_strategy.TREND_SCREENER();
         
     return breakout_indicator;
+
+def getKeltner_Channel():
+    global Keltner_Channel ;
+    if ( Keltner_Channel == None ):
+        Keltner_Channel = trends_strategy.KENTLER_CHANNEL();
+    return Keltner_Channel;
+
+def get_chandeOscillator():
+    global chande_osccilator ;
+    if ( chande_osccilator == None ):
+        chande_osccilator = trends_strategy.chande_oscilattor();
+        
+    return chande_osccilator;
+
+def get_Parabolic_SAR():
+    
+    global Parabolic_SAR;
+    
+    if(Parabolic_SAR == None):
+        Parabolic_SAR = trends_strategy.Parabolic_SAR();
+        
+    return Parabolic_SAR;
+
+def get_Adx():
+    
+    global Adx;
+    
+    if( Adx == None):
+        Adx = trends_strategy.Adx_Indicator();
+        
+    return Adx;
+
+def get_Screener():
+    
+    global screener_trend;
+    
+    if(screener_trend == None):
+        screener_trend  = screener.Screen_Trade();
+    
+    return screener_trend;
+
 
 def getchartDrawInstance():
     global chart_draw_instance;
@@ -262,6 +311,7 @@ def getBuysideCollectionName():
     Coll_name  = Coll_name + date_string+ "_stats";
     return Coll_name;
 
+#----------------------------------------------------------------------------
 
 def getbuy_side_stat_df():
     
@@ -273,7 +323,12 @@ def getbuy_side_stat_df():
                 ("Engullfin", str),
                 ("Trustinline", str),
                 ("TweezerBottom", str),
-                ("RsiComparator",str),
+                ("Bullish_Refine_Swing", str),
+                ("Berish_Refine_Swing", str),
+                ("200SMATrend",str),
+                ("50SMATrend",str),
+                ("20SMATrend",str),
+                ("RsiOutperformNifty",str),
                 ("RsiComparatorTreand",str),
                 ("ConsolNarrowRange",str),                
                 ("BreakoutNarrowRange",str),
@@ -283,9 +338,15 @@ def getbuy_side_stat_df():
                 ("VPDivergence",str),
                 ("SellingClimax",str),
                 ("PickVolumeBreakout",str),
-                ("ObvBreakout",str),
-                ("ObvBreakDown",str),
-                ("DepressObvBreakout",str)
+                ("ObvBreakout",int),
+                ("ObvBreakDown",int),
+                ("DepressObvBreakout",str),
+                ("Keltner_Channel",str),
+                ("Chande_MO",str),
+                ("PSAR",str),
+                ("ADX",float),
+                ("obv_adx_converse",str),
+                ("obv_Psar_converse",str)
                 
             ]
         );
@@ -300,7 +361,12 @@ def getbuy_side_stat_df():
     df['Engullfin']              = '';
     df['Trustinline']            = '';
     df['TweezerBottom']          = '';
-    df['RsiComparator']          = '';    
+    df['Bullish_Refine_Swing']   = '';
+    df['Berish_Refine_Swing']    = '';
+    df['200SMATrend']            = '';
+    df['50SMATrend']             = '';
+    df['20SMATrend']             = '';
+    df['RsiOutperformNifty']     = '';
     df['RsiComparatorTreand']    = '';    
     df['ConsolNarrowRange']      = '';
     df['BreakoutNarrowRange']    = '';    
@@ -310,13 +376,161 @@ def getbuy_side_stat_df():
     df['VPDivergence']           = '';
     df['SellingClimax']          = '';
     df['PickVolumeBreakout']     = '';
-    df['ObvBreakout']            = '';
-    df['ObvBreakDown']           = '';
+    df['ObvBreakout']            = 00;
+    df['ObvBreakDown']           = 00;
     df['DepressObvBreakout']     = '';
+    df['Keltner_Channel']        = '';
+    df['Chande_MO']              = '';
+    df['PSAR']                   = '';
+    df['ADX']                    = 0.0;
+    df['obv_adx_converse']       = '';
+    df['obv_Psar_converse']      = '';
     
     return df;
+
+#----------------------------------------------------------------------------
+def getSwing_stat():
     
-#--------------------------------------------------------------------------------------------------
+    dtypes = np.dtype(
+            [
+                ("Symbol", str),
+                ("Volume", int),
+                ("Current_Price",int),
+                ("Engullfin", str),
+                ("Trustinline", str),
+                ("TweezerBottom", str),
+                ("Bullish_Refine_Swing", str),
+                ("Berish_Refine_Swing", str),
+                ("Keltner_Channel", str),
+                ("PSAR",str),
+                ("ADX",float),
+                ("obv_adx_converse",str),
+                ("obv_Psar_converse",str),
+                ("Strategy",str)
+                
+            ]
+        );
+    
+    df = pd.DataFrame(np.empty(0, dtype=dtypes));
+    df.set_index('Symbol');
+    
+     
+    df['Symbol']                 = '';
+    df['Current_Price']          = 00;
+    df['Volume']                 = 00;
+    df['Engullfin']              = '';
+    df['Trustinline']            = '';
+    df['TweezerBottom']          = '';
+    df['Bullish_Refine_Swing']   = '';
+    df['Berish_Refine_Swing']    = '';
+    df['Keltner_Channel']        = '';
+    df['PSAR']                   = '';
+    df['ADX']                    = 0.0;
+    df['obv_adx_converse']       = '';
+    df['obv_Psar_converse']      = '';
+    df['Strategy']               = '';
+    
+    return df;
+
+#----------------------------------------------------------------------------
+
+def getAbsolute_Momentum_stat():
+    
+    dtypes = np.dtype(
+            [
+                ("Symbol", str),
+                ("Volume", int),
+                ("Current_Price",int),              
+                ("200SMATrend",str),
+                ("50SMATrend",str),
+                ("20SMATrend",str),                
+                ("RsiOutperformNifty",str),                
+                ("ConsolNarrowRange",str),                
+                ("BreakoutNarrowRange",str),
+                ("BreakoutWideRange",str),    
+                ("VPConvergence",str),
+                ("VPDivergence",str),
+                ("ObvBreakout",int),
+                ("ObvBreakDown",int),
+                ("DepressObvBreakout",str),
+                ("PSAR",str),
+                ("ADX",float),
+                ("obv_adx_converse",str),
+                ("obv_Psar_converse",str),
+                ("Strategy",str)
+                
+                
+            ]
+        );
+    
+    df = pd.DataFrame(np.empty(0, dtype=dtypes));
+    df.set_index('Symbol');
+    
+    df['Symbol']                 = '';
+    df['Current_Price']          = 00;
+    df['Volume']                 = 00;    
+    df['200SMATrend']            = '';
+    df['50SMATrend']             = '';
+    df['20SMATrend']             = '';
+    df['RsiOutperformNifty']     = '';
+    df['ConsolNarrowRange']      = '';
+    df['BreakoutNarrowRange']    = '';    
+    df['BreakoutWideRange']      = '';
+    df['VPConvergence']          = '';
+    df['VPDivergence']           = '';    
+    df['ObvBreakout']            = 00;
+    df['ObvBreakDown']           = 00;
+    df['DepressObvBreakout']     = '';
+    df['PSAR']                   = '';
+    df['ADX']                    = 0.0;
+    df['obv_adx_converse']       = '';
+    df['obv_Psar_converse']      = '';
+    df['Strategy']               = '';
+    
+    return df;
+#----------------------------------------------------------------------------
+
+def getVolume_Price_Momentum_stat():
+    
+    dtypes = np.dtype(
+            [
+                ("Symbol", str),
+                ("Volume", int),
+                ("Current_Price",int),      
+                ("SellingClimax",str),
+                ("PickVolumeBreakout",str),
+                ("ObvBreakout",int),
+                ("ObvBreakDown",int),
+                ("DepressObvBreakout",str),
+                ("PSAR",str),
+                ("ADX",float),
+                ("obv_adx_converse",str),
+                ("obv_Psar_converse",str),
+                ("Strategy",str)
+                
+            ]
+        );
+    
+    df = pd.DataFrame(np.empty(0, dtype=dtypes));
+    df.set_index('Symbol');
+    
+    df['Symbol']                 = '';
+    df['Current_Price']          = 00;
+    df['Volume']                 = 00;    
+    df['SellingClimax']          = '';
+    df['PickVolumeBreakout']     = '';
+    df['ObvBreakout']            = 00;
+    df['ObvBreakDown']           = 00;
+    df['DepressObvBreakout']     = '';
+    df['PSAR']                   = '';
+    df['ADX']                    = 0.0;
+    df['obv_adx_converse']       = '';
+    df['obv_Psar_converse']      = '';
+    df['Strategy']               = '';
+    
+    return df;
+
+#----------------------------------------------------------------------------
 #load reference Data 
 #loading nse_symbol
 #loading symbol historical data from last 10 years
@@ -349,6 +563,7 @@ def load_reference_data():
     set_sector_Index_historical_data_dict(ref_obj.get_sector_Index_historical_data());
 
 #----------------------------------------------------------------------------------------------------------------
+
 def sendEmail():
     print('start sending email ...');    
     common.zip(common.getChartDirPath(),common.getCurrectDateString());    
@@ -364,9 +579,11 @@ def SwingStrategy(symbol,buy_stat_df,index):
         
         swing = swingBullish.SWING_STRATEGIES();
 
-        df = getsymbol_historical_data(symbol,);      
-        
+        df = getsymbol_historical_data(symbol);      
+              
         swing.bullish_swing(df,symbol,buy_stat_df,index);
+        
+        swing.refined_Swing(common,df,symbol,buy_stat_df,index);
         
         #print (' End :: ',sys._getframe().f_code.co_name);
         
@@ -405,15 +622,48 @@ def getscreendata(symbol,buy_stat_df,index):
          sector_index_df = getbroadIndex_historical_data_dict(sector_index);
      else:
          sector_index_df = getsectorIndex_historical_data_dict(sector_index);
+      
+     #-------------------------------------------------------------------------------------------
+     
+     # ADX and OBV in upswing convergence
+     if(  get_Adx().isADXinUpSwing(symbol_hst_df) and 
+          getbreakout_indicator().isOBVinUpSwing(symbol_hst_df) ):
+        buy_stat_df.loc[index,'obv_adx_converse'] = str('Yes') ;
+     else:
+        buy_stat_df.loc[index,'obv_adx_converse'] = str('No') ;
+        
+     # PSAR and OBV in upswing convergence
+     if( getbreakout_indicator().isOBVinUpSwing(symbol_hst_df) and 
+         get_Parabolic_SAR().isPSARinUpSwing(symbol_hst_df) ):
+         buy_stat_df.loc[index,'obv_Psar_converse'] = str('Yes') ;
+     else:
+         buy_stat_df.loc[index,'obv_Psar_converse'] = str('No') ;
+     
+     
+     get_Parabolic_SAR().psar_trend(symbol_hst_df,buy_stat_df,index);
+     
+     get_Adx().Adx_trend(symbol_hst_df,buy_stat_df,index);
+ 
+     get_chandeOscillator().CMO_strategy(symbol,symbol_hst_df,10,buy_stat_df,index);
+      
+     getKeltner_Channel().kentler_channel_formation(getchartDrawInstance(),common,symbol,symbol_hst_df,buy_stat_df,index);
 
-     #    # Rsi comparator of stock with broad index
-     # getrelative_comparator().isStockOutPerformRelativeIndex(symbol_hst_df,
-     #                                                          nse_broad_index_df,
-     #                                                          symbol,
-     #                                                          broad_index,
-     #                                                          buy_stat_df,
-     #                                                          index
-     #                                                          );
+     getbreakout_indicator().is200_LongTermUpTrend(getchartDrawInstance(),common,symbol,symbol_hst_df,buy_stat_df,index);
+
+     getbreakout_indicator().is50_MediumTermUpTrend(getchartDrawInstance(),common,symbol,symbol_hst_df,buy_stat_df,index);
+    
+     getbreakout_indicator().is20_ShortTermUpTrend(getchartDrawInstance(),common,symbol,symbol_hst_df,buy_stat_df,index);
+     
+     
+     
+     # Rsi comparator of stock with broad index
+     getrelative_comparator().isStockOutPerformRelativeIndex(symbol_hst_df,
+                                                               nse_broad_index_df,
+                                                               symbol,
+                                                               broad_index, 
+                                                               buy_stat_df,
+                                                               index
+                                                               );
      
      
      # # # Rsi comparator of stock with sector index
@@ -457,6 +707,12 @@ def getscreendata(symbol,buy_stat_df,index):
                                                 symbol_hst_df, 
                                                 buy_stat_df, 
                                                 index);
+     
+     
+     # check is obv and ADX are in converge 
+ 
+        
+     
      # return breakout_comment;
     except Exception as exp:
         print('Caught exception at getscreendata [ ',exp, ' ]');
@@ -497,6 +753,7 @@ def downloadReferenceData():
         size=0;
         
         df= pd.DataFrame();        
+        
         for url in getReferenceData_Equity().nse_symbol_dict.items():
             
             if(len(df) <= 0):
@@ -679,10 +936,8 @@ def daily_update():
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-#Perform the swing operation-------------------------------------------------------------------------------------------------------
+#------------------------------------------Perform the swing operation-------------------------------------------------------------
 
-
-    
 #----------------------------------------------------------------------------------------------------------------------------------
 '''
 # Momentum trading :
@@ -697,30 +952,185 @@ Buy side:
 #----------------------------------------------------------------------------------------------------------------------------------
 
 '''
+def init_stat_df(buy_stat_df,index):
+    
+    buy_stat_df.loc[index,'Symbol'] 				= "No";
+    buy_stat_df.loc[index,'Volume'] 				= 0;
+    buy_stat_df.loc[index,'Current_Price']			= 0;
+    buy_stat_df.loc[index,'Engullfin'] 				= "No";
+    buy_stat_df.loc[index,'Trustinline'] 			= "No";
+    buy_stat_df.loc[index,'TweezerBottom'] 			= "No";
+    buy_stat_df.loc[index,'200SMATrend'] 			= "No";
+    buy_stat_df.loc[index,'50SMATrend']  			= "No";
+    buy_stat_df.loc[index,'20SMATrend']  			= "No";
+    buy_stat_df.loc[index,'RsiOutperformNifty']  	= "No";
+    buy_stat_df.loc[index,'RsiComparatorTreand']  	= "No";
+    buy_stat_df.loc[index,'ConsolNarrowRange']  	= "No";
+    buy_stat_df.loc[index,'BreakoutNarrowRange']  	= "No";
+    buy_stat_df.loc[index,'BreakoutWideRange']  	= "No";
+    buy_stat_df.loc[index,'LifeTimeHighZone']  		= "No";
+    buy_stat_df.loc[index,'VPConvergence']  		= "No";
+    buy_stat_df.loc[index,'VPDivergence']  			= "No";
+    buy_stat_df.loc[index,'SellingClimax']  		= "No";
+    buy_stat_df.loc[index,'PickVolumeBreakout']  	= "No";
+    buy_stat_df.loc[index,'ObvBreakout']  			= 0;
+    buy_stat_df.loc[index,'ObvBreakDown']  			= 0;
+    buy_stat_df.loc[index,'DepressObvBreakout']  	= "No";
+    buy_stat_df.loc[index,'Keltner_Channel']  		= "No";
+    buy_stat_df.loc[index,'Chande_MO']  			= "No";
+    buy_stat_df.loc[index,'PSAR']  					= 0.0;
+    buy_stat_df.loc[index,'obv_adx_converse']  		= "No";
+    buy_stat_df.loc[index,'obv_Psar_converse']  	= "No";
+    
+    return buy_stat_df;
+
+    
+    
 
 def stock_screener(index,buy_stat_df):
     
-
+    volume_filter = 500 * 1000;
     for symbol in getsymbol_list():
-        print('Start Symbol ',symbol);
         
+        df = getsymbol_historical_data(symbol);
+        
+        sma_vol_14  = list(pd_ta.sma(df['Volume'],length=14,talib=False));
+       
+        if(sma_vol_14[-1] < volume_filter):
+            #print (symbol,' skippinmg symbol volume [ ', sma_vol_14[-1], ' ]');
+            #input();
+            continue;
+            
+        
+        buy_stat_df = init_stat_df(buy_stat_df,index);
+        
+        #----------------------------------------------------------------------
+        print('Start Symbol ',symbol);        
         buy_stat_df.loc[index,'Symbol']=symbol;
-        
-        print ('swing start')
+        #----------------------------------------------------------------------
+        print ('swing start');        
         SwingStrategy(symbol,buy_stat_df,index);        
-        print ('swing end  ')
-        print('start screendata')
+        print ('swing end  ');
+        #----------------------------------------------------------------------
+        print('start screendata');
         getscreendata(symbol,buy_stat_df,index);
-        print('end screendata')
-        print('start volume profile ')
+        print('end screendata');
+        #----------------------------------------------------------------------
+        print('start volume profile ');
         volumeProfile(symbol,buy_stat_df,index);
-        print('end volume profile ')
-        
+        print('end volume profile ');
+        #----------------------------------------------------------------------
         index = index + 1;
+        #----------------------------------------------------------------------
         
     return index ;
 
+
+# buy_stat_df.loc[index_cnt,'200SMATrend'] = 'Yes';
+def create_Reports(buy_stat_df):
+
+    
+    Swing_stat_df               = getSwing_stat();
+    
+    Absolute_Momentum_stat      = getAbsolute_Momentum_stat();
+    
+    Volume_Price_Momentum_stat  = getVolume_Price_Momentum_stat();
+    
+    len_df = len(buy_stat_df);
+       
+    
+    for cnt in range(0,len_df-1):
+        #--------------------------------------------------------------------------------------------
+        
+        Swing_stat_df.loc[cnt,'Symbol'] = buy_stat_df.iloc[cnt]['Symbol'];
+        Swing_stat_df.loc[cnt,'Volume'] = buy_stat_df.iloc[cnt]['Volume'];
+        Swing_stat_df.loc[cnt,'Current_Price'] = buy_stat_df.iloc[cnt]['Current_Price'];
+        Swing_stat_df.loc[cnt,'Engullfin'] = buy_stat_df.iloc[cnt]['Engullfin'];
+        Swing_stat_df.loc[cnt,'Trustinline'] = buy_stat_df.iloc[cnt]['Trustinline'];
+        Swing_stat_df.loc[cnt,'TweezerBottom'] = buy_stat_df.iloc[cnt]['TweezerBottom'];
+        Swing_stat_df.loc[cnt,'Bullish_Refine_Swing'] = buy_stat_df.iloc[cnt]['Bullish_Refine_Swing'];
+        Swing_stat_df.loc[cnt,'Berish_Refine_Swing'] = buy_stat_df.iloc[cnt]['Berish_Refine_Swing'];
+        Swing_stat_df.loc[cnt,'Keltner_Channel'] = buy_stat_df.iloc[cnt]['Keltner_Channel'];
+        Swing_stat_df.loc[cnt,'PSAR'] = buy_stat_df.iloc[cnt]['PSAR'];
+        Swing_stat_df.loc[cnt,'ADX'] = buy_stat_df.iloc[cnt]['ADX'];
+        Swing_stat_df.loc[cnt,'obv_adx_converse'] = buy_stat_df.iloc[cnt]['obv_adx_converse'];
+        Swing_stat_df.loc[cnt,'obv_Psar_converse'] = buy_stat_df.iloc[cnt]['obv_Psar_converse'];
+        
+        Absolute_Momentum_stat.loc[cnt,'Symbol'] = buy_stat_df.iloc[cnt]['Symbol'];
+        Absolute_Momentum_stat.loc[cnt,'Volume'] = buy_stat_df.iloc[cnt]['Volume'];
+        Absolute_Momentum_stat.loc[cnt,'Current_Price'] = buy_stat_df.iloc[cnt]['Current_Price'];
+        Absolute_Momentum_stat.loc[cnt,'200SMATrend'] = buy_stat_df.iloc[cnt]['200SMATrend'];
+        Absolute_Momentum_stat.loc[cnt,'50SMATrend'] = buy_stat_df.iloc[cnt]['50SMATrend'];
+        Absolute_Momentum_stat.loc[cnt,'20SMATrend'] = buy_stat_df.iloc[cnt]['20SMATrend'];
+        Absolute_Momentum_stat.loc[cnt,'RsiOutperformNifty'] = buy_stat_df.iloc[cnt]['RsiOutperformNifty'];
+        Absolute_Momentum_stat.loc[cnt,'ConsolNarrowRange'] = buy_stat_df.iloc[cnt]['ConsolNarrowRange'];
+        Absolute_Momentum_stat.loc[cnt,'BreakoutNarrowRange'] = buy_stat_df.iloc[cnt]['BreakoutNarrowRange'];
+        Absolute_Momentum_stat.loc[cnt,'BreakoutWideRange'] = buy_stat_df.iloc[cnt]['BreakoutWideRange'];
+        Absolute_Momentum_stat.loc[cnt,'VPConvergence'] = buy_stat_df.iloc[cnt]['VPConvergence'];
+        Absolute_Momentum_stat.loc[cnt,'VPDivergence'] = buy_stat_df.iloc[cnt]['VPDivergence'];
+        Absolute_Momentum_stat.loc[cnt,'ObvBreakout'] = buy_stat_df.iloc[cnt]['ObvBreakout'];
+        Absolute_Momentum_stat.loc[cnt,'ObvBreakDown'] = buy_stat_df.iloc[cnt]['ObvBreakDown'];    
+        Absolute_Momentum_stat.loc[cnt,'PSAR'] = buy_stat_df.iloc[cnt]['PSAR'];
+        Absolute_Momentum_stat.loc[cnt,'ADX'] = buy_stat_df.iloc[cnt]['ADX'];
+        Absolute_Momentum_stat.loc[cnt,'obv_adx_converse'] = buy_stat_df.iloc[cnt]['obv_adx_converse'];
+        Absolute_Momentum_stat.loc[cnt,'obv_Psar_converse'] = buy_stat_df.iloc[cnt]['obv_Psar_converse'];
+        
+        Volume_Price_Momentum_stat.loc[cnt,'Symbol'] = buy_stat_df.iloc[cnt]['Symbol'];
+        Volume_Price_Momentum_stat.loc[cnt,'Volume'] = buy_stat_df.iloc[cnt]['Volume'];
+        Volume_Price_Momentum_stat.loc[cnt,'Current_Price'] = buy_stat_df.iloc[cnt]['Current_Price'];
+        Volume_Price_Momentum_stat.loc[cnt,'SellingClimax'] = buy_stat_df.iloc[cnt]['SellingClimax'];
+        Volume_Price_Momentum_stat.loc[cnt,'PickVolumeBreakout'] = buy_stat_df.iloc[cnt]['PickVolumeBreakout'];
+        Volume_Price_Momentum_stat.loc[cnt,'ObvBreakout'] = buy_stat_df.iloc[cnt]['ObvBreakout'];
+        Volume_Price_Momentum_stat.loc[cnt,'ObvBreakDown'] = buy_stat_df.iloc[cnt]['ObvBreakDown'];
+        Volume_Price_Momentum_stat.loc[cnt,'DepressObvBreakout'] = buy_stat_df.iloc[cnt]['DepressObvBreakout'];
+        Volume_Price_Momentum_stat.loc[cnt,'PSAR'] = buy_stat_df.iloc[cnt]['PSAR'];
+        Volume_Price_Momentum_stat.loc[cnt,'ADX'] = buy_stat_df.iloc[cnt]['ADX'];
+        Volume_Price_Momentum_stat.loc[cnt,'obv_adx_converse']  = buy_stat_df.iloc[cnt]['obv_adx_converse'];
+        Volume_Price_Momentum_stat.loc[cnt,'obv_Psar_converse'] = buy_stat_df.iloc[cnt]['obv_Psar_converse'];
+        
+        
+        
+        #--------------------------------------------------------------------------------------------  
+        if( get_Screener().swing_screener_1(buy_stat_df.iloc[cnt]) ):            
+            Swing_stat_df.loc[cnt,'Strategy'] = "swing_screener_1";
+        
+        if(get_Screener().swing_screener_2(buy_stat_df.iloc[cnt])):
+            Swing_stat_df.loc[cnt,'Strategy'] = "swing_screener_2";
+            
+        #--------------------------------------------------------------------------------------------  
+        if(get_Screener().momentum_screener_1(buy_stat_df.iloc[cnt]) ):        
+            Absolute_Momentum_stat.loc[cnt,'Strategy'] = "momentum_screener_1";
+        
+        elif(get_Screener().momentum_screener_2(buy_stat_df.iloc[cnt]) ):        
+            Absolute_Momentum_stat.loc[cnt,'Strategy'] = "momentum_screener_2";
+            
+        elif(get_Screener().momentum_screener_3(buy_stat_df.iloc[cnt]) ):            
+            Absolute_Momentum_stat.loc[cnt,'Strategy'] = "momentum_screener_3";
+        else:
+            pass;
+        #--------------------------------------------------------------------------------------------  
+        
+        if(get_Screener().Volume_Price_Momentum_screener_1(buy_stat_df.iloc[cnt]) ):
+            Volume_Price_Momentum_stat.loc[cnt,'Strategy'] = "Volume_Price_Momentum_screener_1";
+        
+        if(get_Screener().Volume_Price_Momentum_screener_2(buy_stat_df.iloc[cnt]) ):
+            Volume_Price_Momentum_stat.loc[cnt,'Strategy'] = "Volume_Price_Momentum_screener_2";
+            
+        #--------------------------------------------------------------------------------------------
+        
+
+        
+    stat_patth = getchart_directory_path();
+    
+    Swing_stat_df.to_csv(stat_patth + '\\' + "Swing" + '.csv' );
+    Absolute_Momentum_stat.to_csv(stat_patth + '\\' + "Momentum" + '.csv' );
+    
+    Volume_Price_Momentum_stat.to_csv(stat_patth + '\\' + "Volume_Price_Momentum" + '.csv' );
+        
+
 def Main():
+    
+    buy_stat_df  = getbuy_side_stat_df();
     instance= getMongoInstance();
     instance.connect();
     index = 0;
@@ -728,21 +1138,25 @@ def Main():
  
     print (' start :: ',sys._getframe().f_code.co_name);
     
-    # reference data uploaded to mongo db
-    #init();    
+    #reference data uploaded to mongo db
+    
+    #init();
     
     #daily_update();
 
-    buy_stat_df = getbuy_side_stat_df();
+    
     load_reference_data();
-    
-    
+        
     stock_screener(index,buy_stat_df);
-    
+
     getMongoInstance().createCollection(getReferenceData_Equity().Daily_BUY_SIDE_ANALYSIS_DB, getBuysideCollectionName(), buy_stat_df);
+    
+    
     stat_patth = getchart_directory_path();
     
     buy_stat_df.to_csv(stat_patth + '\\' + getBuysideCollectionName() + '.csv' );
+    
+    create_Reports(buy_stat_df);
     
     #sendEmail();
     

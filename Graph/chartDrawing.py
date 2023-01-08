@@ -85,6 +85,25 @@ class PLOT_CHART(object):
           plot.savefig(chart);
           
           
+    def simplydrawLineChart(self,ldata,ldate):
+ 
+              
+       customstyle = mpl.make_mpf_style(base_mpf_style='yahoo',
+                                         y_on_right=True,
+                                         facecolor='w');
+
+       
+       x_axix = ldata;
+       y_axis=ldate;
+       
+       plot.xlabel("X-axis")  # add X-axis label
+       plot.ylabel("Y-axis")  # add Y-axis label
+     
+       plot.plot(y_axis,x_axix);
+       
+       plot.show()
+
+          
     def drawTwoinOneChart(self,Symbol,chart_1_x,chart_1_y,chart_2_x,chart_2_y):
        
       

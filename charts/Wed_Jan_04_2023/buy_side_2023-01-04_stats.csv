@@ -1,0 +1,327 @@
+,Symbol,Volume,Current_Price,Engullfin,Trustinline,TweezerBottom,Bullish_Refine_Swing,Berish_Refine_Swing,200SMATrend,50SMATrend,20SMATrend,RsiOutperformNifty,RsiComparatorTreand,ConsolNarrowRange,BreakoutNarrowRange,BreakoutWideRange,LifeTimeHighZone,VPConvergence,VPDivergence,SellingClimax,PickVolumeBreakout,ObvBreakout,ObvBreakDown,DepressObvBreakout,Keltner_Channel,Chande_MO
+0,ABCAPITAL,7138645.0,154.0,,,,,,No,No,No,No,DownTrend,Yes,,,,Yes,,,,,,,,
+1,ABFRL,912860.0,285.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+2,ACE,537971.0,310.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+3,ADANIENT,799549.0,3830.0,,,,,,Yes,Yes,No,No,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+4,ADANIGREEN,813707.0,1892.0,,,,,,Yes,No,No,,DownTrend,Yes,,,,,Yes,,,21,,,,CMO less than -25 Sell Signal 
+5,ADANIPORTS,2073117.0,820.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+6,ADANITRANS,441126.0,2576.0,,,,,,Yes,No,No,,DownTrend,Yes,,,,,,,,,,Yes,,
+7,AEGISCHEM,277148.0,344.0,,,,,,No,Yes,Yes,No,DownTrend,Yes,,,,,,,,,,,False,
+8,ALOKINDS,1019791.0,15.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,CMO less than -25 Sell Signal 
+9,AMARAJABAT,595448.0,575.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,Yes,,,,,,,,,CMO less than -25 Sell Signal 
+10,AMBUJACEM,3246871.0,530.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,Yes,,,,,,,,,
+11,ANANTRAJ,3309963.0,109.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,Yes,,,,,,,
+12,APOLLOTYRE,3035869.0,325.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,,Yes,,,,,,,,
+13,ARVIND,1037841.0,90.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+14,ASHOKA,1184649.0,91.0,,,,,,No,No,No,Yes,DownTrend,,Yes,63,,,Yes,,,63,,,,CMO greater than 25 Buy Signal 
+15,ASHOKLEY,7883974.0,147.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+16,ASIANPAINT,859905.0,3028.0,,,,,,No,No,No,,DownTrend,,,,,,Yes,,,,Yes,,,
+17,ASTRAMICRO,236877.0,287.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+18,AUBANK,1288391.0,651.0,,,,,,No,No,Yes,No,DownTrend,,,,,,,,,,,,,CMO less than -25 Sell Signal 
+19,AUROPHARMA,1449457.0,441.0,,,,,,No,No,No,,DownTrend,,,,,,Yes,,,,,Yes,,
+20,AWL,1215566.0,600.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+21,AXISBANK,6925831.0,962.0,,,,,,No,Yes,Yes,No,DownTrend,,Yes,2510,,Yes,,,,,,,False,
+22,BAJAJFINSV,1306159.0,1563.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+23,BAJAJHIND,8580036.0,16.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+24,BAJFINANCE,741605.0,6606.0,,,,,,No,No,No,,DownTrend,,,,,,Yes,,,,,,,
+25,BALRAMCHIN,2225504.0,402.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+26,BANDHANBNK,6269947.0,240.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+27,BANKBARODA,19753217.0,187.0,,,,,,No,No,No,No,DownTrend,,,,Yes,,Yes,,,63,,,,
+28,BANKINDIA,28812391.0,93.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+29,BCG,52086289.0,28.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,CMO less than -25 Sell Signal 
+30,BDL,246575.0,944.0,,,,,,Yes,Yes,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+31,BEL,8833451.0,100.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+32,BEPL,9534822.0,121.0,,,,,,No,No,No,,DownTrend,,Yes,63,,Yes,,,Today wait for breakout of resistance => 121.6500015258789,63,,,,CMO greater than 25 Buy Signal 
+33,BERGEPAINT,333536.0,579.0,,,,,,No,No,No,,DownTrend,,,,,,,,,,,Yes,,CMO less than -25 Sell Signal 
+34,BHARATFORG,473048.0,878.0,,,,,,No,Yes,Yes,No,DownTrend,Yes,,,,,,,,,,,False,
+35,BHARTIARTL,1717487.0,817.0,,,,,,No,Yes,No,No,DownTrend,,,,Yes,,,,,,,,,
+36,BHEL,14554865.0,80.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,,,,,,,,
+37,BIOCON,1276513.0,263.0,,,,,,No,No,No,,DownTrend,,,,,,,,,,,,,
+38,BLS,605025.0,171.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+39,BOMDYEING,757360.0,80.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+40,BPCL,2631494.0,336.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+41,BSE,419224.0,565.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+42,BSOFT,2514659.0,299.0,,,,,,No,No,No,,DownTrend,Yes,,,,Yes,,,,,,,,
+43,CANBK,11332429.0,336.0,,,,,,No,Yes,No,No,UpTrend,,Yes,1008,,Yes,,,,63,,,,
+44,CANFINHOME,500175.0,548.0,,,,,,No,No,No,,DownTrend,,Yes,,Yes,,Yes,,,63,,,,
+45,CASTROLIND,304260.0,125.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,,,,,,
+46,CENTRALBK,17751637.0,32.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,,,,,,,,
+47,CESC,1279369.0,77.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+48,CGPOWER,752762.0,274.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+49,CHAMBLFERT,782245.0,314.0,,,,,,No,No,No,,UpTrend,Yes,,,Yes,,Yes,,,63,,,,
+50,CHENNPETRO,640343.0,208.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+51,CHOLAFIN,572611.0,728.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+52,CIPLA,952186.0,1075.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,Yes,,
+53,COALINDIA,3639237.0,224.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+54,COCHINSHIP,1849378.0,534.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,,,Yes,,,,,Yes,,CMO less than -25 Sell Signal 
+55,CONCOR,938716.0,744.0,,,,,,No,Yes,No,,DownTrend,Yes,,,Yes,Yes,,,,,,,,
+56,CONFIPET,2903114.0,81.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,Yes,,,,,,,,
+57,COROMANDEL,335342.0,900.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+58,CROMPTON,728383.0,347.0,,,,,,No,No,No,,DownTrend,,,,Yes,,Yes,,,,,,,
+59,CSBBANK,7945756.0,251.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,Yes,Yes,,Yes,,63,,,,CMO less than -25 Sell Signal 
+60,CUB,1748655.0,178.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+61,DAAWAT,1840762.0,119.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,Yes,,,,63,,,,
+62,DABUR,904002.0,560.0,,,,,,No,No,No,,DownTrend,,,,,,,,,,,,,CMO less than -25 Sell Signal 
+63,DBL,1885371.0,223.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,Today wait for breakout of resistance => 223.39999389648438,63,,,,CMO less than -25 Sell Signal 
+64,DCAL,723630.0,94.0,,,,,True,No,No,No,,UpTrend,Yes,,,,Yes,,,,,,,,
+65,DCBBANK,2254201.0,130.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,Yes,,,,,,,,
+66,DEEPAKFERT,338323.0,693.0,,,,,,Yes,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+67,DELHIVERY,336541.0,337.0,,,,,,,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+68,DELTACORP,1761768.0,216.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+69,DEN,790527.0,35.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+70,DEVYANI,807308.0,177.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+71,DHANI,1909387.0,40.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+72,DISHTV,6908590.0,18.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,,,,,,,,
+73,DIVISLAB,244582.0,3393.0,,,,,,No,No,Yes,,DownTrend,Yes,,,,,,,,,,Yes,,
+74,DLF,2002727.0,380.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+75,DRREDDY,162147.0,4238.0,,,,,,No,Yes,No,,DownTrend,Yes,,,,,,,,,,Yes,,CMO less than -25 Sell Signal 
+76,DWARKESH,2166452.0,105.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 106,,,,,
+77,EASEMYTRIP,5275736.0,53.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,,,,,,
+78,EDELWEISS,1219959.0,64.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,,,,,,
+79,EICHERMOT,323223.0,3213.0,,,,,,Yes,No,No,,DownTrend,Yes,,,,,,,,,,,,
+80,EIHOTEL,314279.0,179.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+81,EKC,401557.0,100.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 101,,,Yes,,
+82,ELECTCAST,1281589.0,39.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,Yes,,,,,,,,
+83,ENGINERSIN,2027041.0,80.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+84,EPL,168255.0,169.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,Before wait for breakout of resistance => 191,,,,,CMO less than -25 Sell Signal 
+85,EQUITASBNK,2476344.0,59.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,Yes,,,,,,,
+86,EXIDEIND,1729288.0,180.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+87,FACT,1333036.0,337.0,,,,,,No,Yes,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,False,
+88,FCL,267839.0,252.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+89,FEDERALBNK,24554724.0,137.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,Yes,,,,63,,,,
+90,FILATEX,214079.0,45.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+91,FINPIPE,816028.0,188.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,Yes,,Yes,,,63,,,,
+92,FORTIS,280765.0,283.0,,,,,,No,No,No,,DownTrend,,,,,,Yes,,Before wait for breakout of resistance => 303,,,,,
+93,FSL,825496.0,103.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+94,GABRIEL,318032.0,190.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+95,GAIL,6050701.0,96.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+96,GATI,246490.0,143.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,Before wait for breakout of resistance => 145,,,,,
+97,GICRE,8723871.0,196.0,,,,,,No,No,Yes,No,DownTrend,,Yes,252,,,Yes,,,63,,,,
+98,GLENMARK,735382.0,434.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,CMO greater than 25 Buy Signal 
+99,GMDCLTD,1049264.0,151.0,,,,,,No,No,No,Yes,UpTrend,Yes,,,,,Yes,,,,,,,
+100,GMMPFAUDLR,254010.0,1601.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+101,GMRINFRA,6123079.0,40.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,,,,,,,,
+102,GNFC,749246.0,567.0,,,,,,Yes,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+103,GODREJCP,910243.0,892.0,,,,,,No,No,Yes,No,DownTrend,,,,,Yes,,,,,,,,
+104,GPIL,1139704.0,409.0,,,,,,No,No,Yes,No,DownTrend,,Yes,126,,Yes,,,,63,,,,
+105,GPPL,3493525.0,104.0,,,,,,No,No,No,No,UpTrend,,Yes,252,,,Yes,,,63,,,,CMO > 25 and < 30 Strong Buy Signal => 27.744512315462977
+106,GRANULES,1639085.0,326.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+107,GREAVESCOT,852027.0,137.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+108,GRSE,1734760.0,492.0,,,,,,No,Yes,No,Yes,DownTrend,Yes,,,,Yes,,,,,,,,
+109,GSFC,2252791.0,139.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,Yes,,,,,,,
+110,GSPL,286139.0,272.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+111,GTLINFRA,10357178.0,1.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+112,GUJGASLTD,866133.0,490.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,CMO less than -25 Sell Signal 
+113,HAL,554863.0,2539.0,,,,,,Yes,Yes,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+114,HATHWAY,2313547.0,17.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,Before wait for breakout of resistance => 19,,,,,CMO less than -25 Sell Signal 
+115,HAVELLS,998602.0,1127.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,CMO less than -25 Sell Signal 
+116,HBLPOWER,1551055.0,105.0,,,,,,No,No,No,Yes,UpTrend,Yes,,,,,Yes,,,,,,,
+117,HCC,45280324.0,21.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,Yes,,,63,,,,
+118,HCLTECH,2484318.0,1041.0,,,,,,No,Yes,No,No,DownTrend,,,,Yes,Yes,,,,,,,,CMO > 25 and < 30 Strong Buy Signal => 26.93654866032746
+119,HDFC,2262442.0,2664.0,,,,,,No,Yes,No,No,DownTrend,,,,Yes,,Yes,,,,,,,
+120,HDFCBANK,4187907.0,1639.0,,,,,,No,Yes,Yes,No,DownTrend,,,,Yes,,Yes,,,,,,False,
+121,HDFCLIFE,10092755.0,595.0,,,,,,No,No,No,No,DownTrend,,Yes,21,Yes,Yes,,,,21,,,,CMO > 25 and < 30 Strong Buy Signal => 25.442899503952557
+122,HEMIPROP,1672077.0,112.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,Yes,,,Before wait for breakout of resistance => 113,,,,,
+123,HFCL,9278764.0,76.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+124,HIKAL,3993225.0,416.0,,,,,,No,No,Yes,Yes,DownTrend,,Yes,,,Yes,,,,63,,,,CMO greater than 25 Buy Signal 
+125,HIMATSEIDE,863440.0,83.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,CMO less than -25 Sell Signal 
+126,HINDALCO,5903712.0,479.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,Yes,,,,,,,
+127,HINDCOPPER,4397378.0,116.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,Yes,,,,,,,,
+128,HINDPETRO,1689575.0,237.0,,,,,,No,No,No,Yes,UpTrend,Yes,,,Yes,,Yes,,,,,,,
+129,HINDUNILVR,821537.0,2542.0,,,,,,No,No,Yes,,DownTrend,Yes,,,,,,,,,Yes,,,CMO less than -25 Sell Signal 
+130,HINDZINC,1353520.0,331.0,,,,,,No,No,No,No,DownTrend,,Yes,2510,,Yes,,,,63,,,,
+131,HSCL,936990.0,99.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+132,HUDCO,7581775.0,53.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+133,IBREALEST,5365187.0,83.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,Yes,,,,,,,
+134,IBULHSGFIN,13657223.0,150.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,Yes,,,,,,,
+135,ICICIBANK,5846160.0,901.0,,,,,,No,No,No,,DownTrend,,,,,,,,,,,,,
+136,ICICIGI,1324002.0,1267.0,,,,,,No,No,Yes,No,DownTrend,,Yes,63,,Yes,,,,21,,,,CMO greater than 25 Buy Signal 
+137,ICICIPRULI,4107703.0,468.0,,,,,,No,No,No,,DownTrend,,Yes,21,Yes,Yes,,,,,,,,CMO > 25 and < 30 Strong Buy Signal => 29.77411984694843
+138,IDBI,10000026.0,55.0,,,,,,No,No,No,No,UpTrend,Yes,,,,,Yes,,,,,,,
+139,IDEA,108153946.0,7.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+140,IDFC,7830025.0,84.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,Yes,,,63,,,,
+141,IDFCFIRSTB,38932324.0,61.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+142,IEX,3717628.0,142.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+143,IFCI,20363250.0,14.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,,,,63,,,,
+144,IGL,1123043.0,419.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,CMO less than -25 Sell Signal 
+145,IIFL,203160.0,466.0,,,,,,No,Yes,Yes,No,DownTrend,Yes,,,,,,,,,,,False,CMO less than -25 Sell Signal 
+146,INDHOTEL,1658107.0,320.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 321,,,,,
+147,INDIACEM,1735234.0,222.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+148,INDIANB,1965006.0,296.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+149,INDIGO,321586.0,2040.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,,
+150,INDUSINDBK,2194830.0,1240.0,,,,,,No,No,Yes,No,DownTrend,,,,Yes,,Yes,,,63,,,,
+151,INDUSTOWER,878615.0,189.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,Yes,,,
+152,INFIBEAM,8684851.0,16.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,,,,,,,,
+153,INFY,4550173.0,1522.0,,,,,,No,Yes,No,,DownTrend,,,,,,,,,,,,,
+154,INOXWIND,289843.0,108.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,Yes,,,CMO less than -25 Sell Signal 
+155,IOB,83019250.0,32.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+156,IOC,11485237.0,78.0,,,,,,No,No,No,No,DownTrend,,Yes,,Yes,,Yes,,,,,,,
+157,IOLCP,637241.0,371.0,,,,,,No,No,Yes,,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 399,,,Yes,,
+158,IRB,8845505.0,314.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,Yes,Yes,,,,63,,,,
+159,IRCON,10154060.0,60.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,Yes,,
+160,IRCTC,2364166.0,644.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,CMO less than -25 Sell Signal 
+161,IRFC,84788891.0,33.0,,,,,,No,No,No,No,UpTrend,Yes,,,Yes,,Yes,,,63,,,,
+162,ITC,5993839.0,331.0,,,,,,No,No,No,,DownTrend,,,,,,,,,,,,,CMO less than -25 Sell Signal 
+163,J&KBANK,10545221.0,57.0,,,,,,No,No,No,No,UpTrend,,,,Yes,,Yes,,,,,,,
+164,JAICORPLTD,1140281.0,151.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+165,JAMNAAUTO,255745.0,105.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+166,JBMA,236029.0,517.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,,
+167,JINDALSAW,4025162.0,110.0,,,,,,No,No,No,No,DownTrend,,Yes,189,,Yes,,,,63,,,,
+168,JINDALSTEL,4002411.0,598.0,,,,,,No,Yes,Yes,No,DownTrend,,Yes,2510,,,Yes,,,63,,,False,CMO greater than 25 Buy Signal 
+169,JISLJALEQS,1127306.0,33.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,Yes,,
+170,JKPAPER,358105.0,416.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 439,,,,,
+171,JKTYRE,669066.0,188.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,,,,,,,,
+172,JMFINANCIL,888856.0,73.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+173,JPASSOCIAT,14348284.0,10.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,,,,,,
+174,JPPOWER,37452508.0,7.0,,,,,,No,No,No,,UpTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+175,JSL,2168528.0,248.0,,,,,,No,Yes,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,False,CMO greater than 25 Buy Signal 
+176,JSWENERGY,365468.0,289.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+177,JSWISPL,690505.0,32.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,CMO > 25 and < 30 Strong Buy Signal => 28.735667463223205
+178,JSWSTEEL,1635609.0,767.0,,,,,,No,Yes,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,False,CMO > 25 and < 30 Strong Buy Signal => 26.951244111414386
+179,JUBLFOOD,1233620.0,507.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,Yes,,
+180,JYOTHYLAB,131924.0,204.0,,,,,,No,No,No,No,DownTrend,,,,,,,,,,,,,
+181,KALYANKJIL,2285043.0,124.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,,
+182,KARURVYSYA,7275003.0,112.0,,,,,,No,No,No,No,DownTrend,Yes,,,,Yes,,,,,,Yes,,
+183,KOTAKBANK,1663289.0,1832.0,,,,,,No,No,No,,DownTrend,,,,,,,,,,,,,
+184,KPITTECH,523379.0,691.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,,,,,,,,,,
+185,KTKBANK,3781803.0,158.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,Yes,Yes,,,,,,,,
+186,L&TFH,8118831.0,90.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+187,LAURUSLABS,1430946.0,377.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,Yes,,
+188,LEMONTREE,1374129.0,83.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+189,LICHSGFIN,1101931.0,421.0,,,,,,No,No,Yes,Yes,DownTrend,Yes,,,,,Yes,,,,,,,
+190,LICI,4839377.0,734.0,,,,,,,No,Yes,No,DownTrend,Yes,,,Yes,Yes,,,,,,,,
+191,LT,1259698.0,2088.0,,,,,,No,Yes,Yes,No,DownTrend,Yes,,,,,,,,,Yes,,False,CMO less than -25 Sell Signal 
+192,LUPIN,631501.0,737.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,,,,,,,,Yes,,
+193,LXCHEM,321061.0,299.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+194,M&M,1510545.0,1249.0,,,,,,Yes,No,No,,DownTrend,Yes,,,,,,,,,,,,
+195,M&MFIN,11104923.0,234.0,,,,,,No,No,No,No,DownTrend,Yes,,,,Yes,,,,,Yes,,,
+196,MAHABANK,54872789.0,32.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+197,MAHINDCIE,526304.0,337.0,,,,,,No,No,Yes,Yes,UpTrend,Yes,,,,,Yes,,,,,,,
+198,MANAPPURAM,12926609.0,122.0,,,,,,No,No,No,No,DownTrend,,Yes,,Yes,Yes,,,,63,,,,
+199,MARICO,490250.0,510.0,,,,,,No,No,Yes,,DownTrend,,,,,,,,,,,Yes,,CMO less than -25 Sell Signal 
+200,MARKSANS,960820.0,59.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,,,,,,,,
+201,MARUTI,493182.0,8382.0,,,,,,Yes,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+202,MAXHEALTH,396310.0,446.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+203,MAZDOCK,9015403.0,834.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,,Yes,,,,63,,,,
+204,MCDOWELL-N,750409.0,865.0,,,,,,No,Yes,No,,DownTrend,Yes,,,,,,,,,Yes,,,CMO less than -25 Sell Signal 
+205,METROPOLIS,445207.0,1366.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,CMO greater than 25 Buy Signal 
+206,MFSL,1518009.0,709.0,,,,,,No,No,Yes,,DownTrend,Yes,,,Yes,Yes,,,,,,,,
+207,MIDHANI,375426.0,222.0,,,,,,No,No,No,,UpTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 251,,,,,
+208,MMTC,1585397.0,38.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,Before wait for breakout of resistance => 41,,,,,
+209,MOIL,408118.0,170.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,63,,,,
+210,MOL,467548.0,111.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+211,MOREPENLAB,7025182.0,35.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,Before wait for breakout of resistance => 42,,,,,
+212,MOTHERSON,7237906.0,76.0,,,,,,No,No,No,,DownTrend,,Yes,21,Yes,,Yes,,,,,,,CMO greater than 25 Buy Signal 
+213,MRPL,1920520.0,57.0,,,,,,No,No,No,,UpTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+214,MSUMI,5929775.0,57.0,,,,,,,No,No,No,DownTrend,Yes,,,,,Yes,,,,Yes,,,
+215,MUTHOOTFIN,302072.0,1087.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+216,NATIONALUM,12995078.0,83.0,,,,,,No,No,No,Yes,UpTrend,Yes,,,,,Yes,,,,,,,CMO > 25 and < 30 Strong Buy Signal => 26.121360134051905
+217,NAVA,1261569.0,256.0,,,,,,No,No,Yes,Yes,DownTrend,Yes,,,,,Yes,,,,,,,CMO greater than 25 Buy Signal 
+218,NBCC,6950062.0,41.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,63,,,,
+219,NCC,8298667.0,90.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+220,NETWORK18,1051165.0,66.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,Before wait for breakout of resistance => 73,,,,,
+221,NFL,7669297.0,72.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+222,NHPC,3761723.0,39.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+223,NIACL,4482624.0,131.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,Yes,,Yes,,,63,,,,
+224,NLCINDIA,1713800.0,86.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,,,,,,
+225,NTPC,9624595.0,167.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+226,NYKAA,3641115.0,153.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+227,OIL,682769.0,211.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+228,ONGC,14990122.0,149.0,,,,,,No,No,No,No,DownTrend,Yes,,,,Yes,,,,,,,,
+229,ORIENTCEM,991630.0,131.0,,,,,,No,No,No,,DownTrend,Yes,,,,Yes,,,,,,Yes,,
+230,PAISALO,856992.0,78.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+231,PARADEEP,1553132.0,59.0,,,,,,,No,No,Yes,DownTrend,Yes,,,,,Yes,,,,,,,
+232,PAYTM,1210847.0,535.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+233,PCBL,437658.0,131.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+234,PETRONET,1173254.0,216.0,,,,,,No,No,No,Yes,DownTrend,,,,,,Yes,,,,,,,
+235,PFC,30687824.0,156.0,,,,,,No,No,No,No,UpTrend,,Yes,2510,,Yes,,,,63,,,,CMO greater than 25 Buy Signal 
+236,PNB,78519939.0,57.0,,,,,,No,No,No,No,UpTrend,Yes,,,Yes,,Yes,,,63,,,,
+237,PNBHOUSING,3761580.0,573.0,,,,,,No,Yes,Yes,No,DownTrend,Yes,,,,Yes,,,,,,,False,
+238,PNCINFRA,1833851.0,307.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,Yes,,,,,,,,CMO > 25 and < 30 Strong Buy Signal => 29.907124487200562
+239,POLICYBZR,973467.0,453.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,Yes,,,,,,,,,CMO less than -25 Sell Signal 
+240,POONAWALLA,2430680.0,303.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+241,POWERGRID,2154188.0,215.0,,,,,,No,No,No,,DownTrend,,,,Yes,,,,,,,,,
+242,PRAJIND,784980.0,366.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+243,PVR,118650.0,1714.0,,,,,,Yes,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+244,RAILTEL,1442013.0,128.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+245,RAIN,1967486.0,179.0,,,,,,No,No,No,,DownTrend,Yes,,,,Yes,,,,,,,,
+246,RAYMOND,363956.0,1495.0,,,,,,Yes,Yes,Yes,No,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 1608,,,,False,
+247,RBLBANK,17645663.0,186.0,,,,,,No,No,No,No,UpTrend,,Yes,252,,Yes,,,,63,,,,CMO greater than 25 Buy Signal 
+248,RCF,6175073.0,130.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,Yes,,,,,,,
+249,RECLTD,27506440.0,123.0,,,,,,No,No,No,No,UpTrend,,Yes,2510,,Yes,,,,63,,,,CMO greater than 25 Buy Signal 
+250,REDINGTON,4254906.0,190.0,,,,,,No,No,No,No,DownTrend,,Yes,,Yes,Yes,,,,,,,,
+251,RELIANCE,3532428.0,2557.0,,,,,,No,Yes,No,,DownTrend,,,,,,,,,,,,,CMO less than -25 Sell Signal 
+252,RELIGARE,1725260.0,179.0,,,,,,No,No,No,Yes,DownTrend,,Yes,,,Yes,,,,,,Yes,,
+253,RELINFRA,788196.0,138.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+254,RENUKA,7947146.0,58.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,Yes,,,,,Yes,,
+255,RHIM,281809.0,864.0,,,,,,Yes,Yes,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,False,
+256,RITES,445521.0,337.0,,,,,,No,Yes,No,Yes,DownTrend,Yes,,,,,,,,,,,,
+257,RKFORGE,177607.0,261.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,,
+258,RPOWER,11826529.0,14.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+259,RTNINDIA,952038.0,43.0,,,,,,No,No,No,,UpTrend,Yes,,,Yes,,,,,,,,,
+260,RTNPOWER,2741151.0,4.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+261,RVNL,21671703.0,71.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,Yes,,,,63,,,,
+262,SAIL,37845189.0,88.0,,,,,,No,No,No,Yes,UpTrend,Yes,,,,Yes,,,,,,,,CMO > 25 and < 30 Strong Buy Signal => 29.279263179599972
+263,SBICARD,1083481.0,792.0,,,,,,No,No,No,,DownTrend,,,,,,,,,,Yes,,,
+264,SBILIFE,1871260.0,1268.0,,,,,,No,No,No,,DownTrend,,,,Yes,Yes,,,,63,,,,CMO > 25 and < 30 Strong Buy Signal => 27.206184064787145
+265,SBIN,6816158.0,612.0,,,,,,No,Yes,No,No,DownTrend,Yes,,,,,Yes,,,63,,,,
+266,SEQUENT,428640.0,87.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,Before wait for breakout of resistance => 94,,,,,
+267,SHARDACROP,197293.0,504.0,,,,,,Yes,No,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,,
+268,SHILPAMED,326313.0,286.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 289,,,,,
+269,SHRIRAMFIN,436989.0,1370.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+270,SJVN,3573755.0,35.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+271,SONACOMS,556643.0,415.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+272,SOUTHBANK,133169991.0,20.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,Yes,,,,,,,,
+273,SPICEJET,1855914.0,38.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,Before wait for breakout of resistance => 42,,,,,CMO less than -25 Sell Signal 
+274,SRF,741035.0,2302.0,,,,,,Yes,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+275,STAR,483668.0,366.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,,,Yes,,,,,,,
+276,STEELXIND,3400927.0,14.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+277,STLTECH,559899.0,175.0,,,,,,No,No,No,Yes,UpTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 186,,,,,
+278,SUBEXLTD,5063279.0,33.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+279,SUNPHARMA,1809691.0,1009.0,,,,,,No,Yes,No,No,DownTrend,,,,,,Yes,,,,,,,CMO greater than 25 Buy Signal 
+280,SUNTV,1094764.0,486.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,CMO less than -25 Sell Signal 
+281,SURYODAY,520870.0,121.0,,,,,,No,No,No,Yes,UpTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 123,,,,,
+282,SUVENPHAR,1420089.0,493.0,,,,,,No,No,No,Yes,DownTrend,,,,,Yes,,,,,,Yes,,
+283,SUZLON,125972890.0,10.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,,,,,,,,
+284,SWANENERGY,4251670.0,329.0,,,,,,No,No,Yes,No,UpTrend,,Yes,2510,,Yes,,,Today wait for breakout of resistance => 329.6499938964844,63,,,,CMO greater than 25 Buy Signal 
+285,TATACHEM,497882.0,941.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,CMO less than -25 Sell Signal 
+286,TATACOMM,1068886.0,1336.0,,,,,,No,Yes,No,No,DownTrend,,,,Yes,Yes,,,,,,,,
+287,TATACONSUM,785340.0,767.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,Yes,,CMO less than -25 Sell Signal 
+288,TATAMOTORS,9424652.0,393.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+289,TATAMTRDVR,866497.0,212.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+290,TATAPOWER,7232192.0,211.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+291,TATASTEEL,74375885.0,118.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,Yes,,,,,,,,CMO > 25 and < 30 Strong Buy Signal => 26.041663907192664
+292,TCS,1244685.0,3311.0,,,,,,No,Yes,No,,DownTrend,,,,Yes,,Yes,,,,,,,CMO greater than 25 Buy Signal 
+293,TECHM,1439523.0,1023.0,,,,,,No,No,No,,DownTrend,,,,,,Yes,,,,,Yes,,
+294,THOMASCOOK,486612.0,74.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,Before wait for breakout of resistance => 83,,,,,
+295,THYROCARE,136415.0,614.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,Yes,,
+296,TIMETECHNO,2279992.0,95.0,,,,,,No,No,No,,DownTrend,,Yes,21,Yes,Yes,,,,63,,,,
+297,TITAN,852171.0,2613.0,,,,,,Yes,No,No,,DownTrend,,Yes,,,,Yes,,,,,,,CMO greater than 25 Buy Signal 
+298,TRENT,233728.0,1347.0,,,,,,Yes,No,No,,DownTrend,Yes,,,,,,,,,,,,CMO less than -25 Sell Signal 
+299,TRIDENT,3503443.0,34.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+300,TRITURBINE,1218086.0,244.0,,,,,,No,Yes,No,,DownTrend,Yes,,,,,Yes,,,,Yes,,,CMO less than -25 Sell Signal 
+301,TRIVENI,338991.0,283.0,,,,,,No,No,No,Yes,DownTrend,Yes,,,,,,,,,,Yes,,
+302,TTML,1173787.0,91.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+303,TV18BRDCST,3340255.0,37.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+304,TVSMOTOR,2199185.0,1041.0,,,,,,Yes,No,No,No,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 1048,,,,,
+305,UCOBANK,70786050.0,32.0,,,,,,No,No,No,No,DownTrend,Yes,,,,,,,,,,,,
+306,UJJIVANSFB,11656713.0,30.0,,,,,,No,No,No,No,UpTrend,Yes,,,Yes,,Yes,,,,,,,
+307,UNIONBANK,20938395.0,82.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,,,,,,,,
+308,UPL,1276849.0,719.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,Yes,,,CMO less than -25 Sell Signal 
+309,USHAMART,3319139.0,190.0,,,,,,No,No,No,Yes,DownTrend,,Yes,2510,,Yes,,,,63,,,,CMO greater than 25 Buy Signal 
+310,UTIAMC,409959.0,846.0,,,,,,No,No,Yes,No,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 859,,,,,
+311,VAKRANGEE,1858049.0,28.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,Yes,,,,,,,
+312,VBL,782019.0,1306.0,,,,,,Yes,Yes,Yes,No,DownTrend,Yes,,,,,,,,,,,False,CMO less than -25 Sell Signal 
+313,VEDL,10676367.0,319.0,,,,,,No,No,No,No,DownTrend,,Yes,126,,Yes,,,,63,,,,
+314,VIJAYA,283127.0,414.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+315,VOLTAS,542997.0,808.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+316,WELCORP,425148.0,233.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,
+317,WELENT,1268435.0,169.0,,,,,,No,No,No,No,DownTrend,Yes,,,,Yes,,,,,,,,CMO > 25 and < 30 Strong Buy Signal => 28.01678243390764
+318,WELSPUNIND,412078.0,76.0,,,,,,No,No,No,,DownTrend,Yes,,,,,,,,,,,,
+319,WIPRO,2996435.0,397.0,,,,,,No,No,No,,DownTrend,,,,Yes,,Yes,,,,,,,CMO > 25 and < 30 Strong Buy Signal => 25.471631117193304
+320,WOCKPHARMA,2079993.0,229.0,,,,,,No,No,No,,DownTrend,Yes,,,,Yes,,,Before wait for breakout of resistance => 236,,,,,
+321,YESBANK,339684334.0,22.0,,,,,,No,No,No,No,DownTrend,Yes,,,Yes,,Yes,,,63,,,,
+322,ZEEL,5315656.0,240.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,,,,,,CMO less than -25 Sell Signal 
+323,ZENSARTECH,533067.0,215.0,,,,,,No,No,No,,DownTrend,Yes,,,Yes,,,,,,,,,
+324,ZOMATO,49691262.0,58.0,,,,,,No,No,No,,DownTrend,Yes,,,,,Yes,,Before wait for breakout of resistance => 65,,,,,
+325,ZYDUSLIFE,625497.0,424.0,,,,,,No,No,No,No,DownTrend,,Yes,21,Yes,,Yes,,,21,,,,CMO greater than 25 Buy Signal 
